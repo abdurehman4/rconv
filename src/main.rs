@@ -36,17 +36,23 @@ fn main() {
     ];
 
 
-    let pressure_conversions:[[&str;2];6] = [
-        ["1","Atm to Pascal"],
-        ["2","Atm to Torr"],
-        ["3","Torr to Pascal"],
+    let pressure_conversions:[[&str;2];12] = [
+        ["1","Atm to Torr"],
+        ["2","Atm to Pascal"],
+        ["3","Atm to mmHg"],
         ["4","Torr to Atm"],
-        ["5","Pascal to Torr"],
-        ["6","Pascal to Atm"]
+        ["5","Torr to Pascal"],
+        ["6","Torr to mmHg"],
+        ["7","Pascal to Atm"],
+        ["8","Pascal to Torr"],
+        ["9","Pascal to mmHg"],
+        ["10","mmHg to Atm"],
+        ["11","mmHg to Torr"],
+        ["12","mmHg to Pascal"]
     ];
 
 
-    let conversion_categories:((&'static str, &'static str, [[&str; 2]; 8]),(&'static str, &'static str, [[&str; 2];6]),(&str,&str, [[&str;2];6])) = (
+    let conversion_categories:((&str, &str, [[&str; 2]; 8]),(&str, &str, [[&str; 2];6]),(&str,&str, [[&str;2];12])) = (
         (
             "1",
             "Length Conversions",
@@ -175,12 +181,12 @@ fn main() {
         if output_type == "Pascal"{
             output_value = input_int * 101325.0;
         }
-        else if output_type == "Torr"{
+        else if (output_type == "Torr") ||(output_type == "mmHg") {
             output_value = input_int * 760.0;
         }
     }else if input_type == "Pascal" {
-        if output_type == "Torr" {
-            output_value = input_int / 133.0 ;
+        if output_type == "Torr" ||(output_type == "mmHg")  {
+            output_value = (input_int / 101325.0) * 760.0 ;
         }else if output_type == "Atm" {
             output_value = input_int / 101325.0;
         }
@@ -188,7 +194,19 @@ fn main() {
         if output_type == "Atm"{
             output_value = input_int / 760.0;
         }else if output_type == "Pascal" {
-            output_value = input_int * 133.0;
+            output_value = (input_int / 760.0) * 101325.0;
+        }else if output_type == "mmHg"{
+            output_value = input_int;
+        }
+    }else if input_type == "mmHg"{
+        if output_type == "Atm"{
+            output_value = input_int / 760.0;
+        }
+        else if output_type == "Torr"{
+            output_value = input_int;
+        }
+        else if output_type == "Pascal"{
+            output_value = (input_int / 760.0) * 101325.0;
         }
     }
 
