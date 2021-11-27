@@ -63,32 +63,28 @@ fn main() {
     ];
 
 
-
-
-
-
-    let conversion_categories:((&str,&str,[[&str; 2]; 16]),(&str, &str, [[&str; 2]; 8]),(&str, &str, [[&str; 2];6]),(&str,&str, [[&str;2];12])) = (
+    let conversion_categories:[(&str, &str, &[[&str;2]]);4] = [
         (
             "1",
             "Area Conversions",
-            area_conversions
+            &area_conversions
             ),
         (
             "2",
             "Length Conversions",
-            length_conversions
+            &length_conversions
         ),
         (
             "3",
             "Temperature Conversions",
-            temp_conversions
+            &temp_conversions
         ),
         (
             "4",
             "Pressure Conversions",
-            pressure_conversions
+            &pressure_conversions
             )
-    );
+    ];
 
 
 
@@ -295,97 +291,27 @@ fn main() {
         println!("{}: {}",output_type,output_value);
     }
 
-
-
-
-
-
     print!("\x1b[92m\x1b[1m");
     println!("Welcome to UConv!");
-    // println! ("Conversion Category 1: {:?}",conversion_categories);
-    // for conversion_category in conversion_categories.iter(){
-    //     println!("{}: {}",conversion_category.0,conversion_category.1);
-    // }
 
-    println!("{}: {}", conversion_categories.0.0, conversion_categories.0.1);
-    println!("{}: {}", conversion_categories.1.0, conversion_categories.1.1);
-    println!("{}: {}", conversion_categories.2.0, conversion_categories.2.1);
-    println!("{}: {}", conversion_categories.3.0, conversion_categories.3.1);
+
+
+    for category in conversion_categories.iter(){
+        println!("{}: {}", category.0, category.1);
+    }
 
 
     println!("Select the category:");
     io::stdin().read_line(&mut category_choice).expect("Error!");
     category_choice.pop();
 
-    if category_choice == "1"{
-        choose_category(&area_conversions);
-    }else if category_choice == "2"{
-        choose_category(&length_conversions);
-    }else if category_choice == "3" {
-        choose_category(&temp_conversions);
-    }else if category_choice == "4" {
-        choose_category(&pressure_conversions);
+    if category_choice.parse::<usize>().unwrap()-1 < conversion_categories.len(){
+    for category in conversion_categories.iter(){
+        if category_choice == category.0 {
+            choose_category(&category.2);
+        }
     }
-    else {
-        println!("Wrong Choice!");
-        process::exit(1);
+    }else {
+        println!("Wrong Choice!!");
     }
-    // println! ("Choice: {}",choice);
-        //
-    // if category_choice == "1"{
-    //     println!("Number of Choice: {}",area_conversions.len());
-    //     for conversion in area_conversions.iter(){
-    //         println!("{} : {}", conversion[0],conversion[1])
-    //     }
-    //     println!("Select an option:");
-    //     io::stdin().read_line(&mut input_str).expect("Error!!");
-    //     input_str.pop();
-    //     choice = area_conversions[input_str.parse::<usize>().unwrap() - 1][1];
-    // }
-    // else if category_choice == "3" {
-    //     println!("Number of Choices: {}", temp_conversions.len());
-    //     for conversion in temp_conversions.iter() {
-    //         println!("{} : {}  ", conversion[0], conversion[1]);
-    //     }
-    //     println!("Select an option:");
-    //     io::stdin().read_line(&mut input_str).expect("Error!!");
-    //     input_str.pop();
-    //     choice = temp_conversions[input_str.parse::<usize>().unwrap() - 1][1];
-    // }
-    //
-    //
-    //
-    //
-    // else if category_choice == "2" {
-    //     println!("Number of Choices : {}", length_conversions.len());
-    //     for conversion in length_conversions.iter(){
-    //         println!("{} : {}  ",conversion[0], conversion[1]);
-    //     }
-    //     println!("Select an option:");
-    //     io::stdin().read_line(&mut input_str).expect("Error!");
-    //     input_str.pop();
-    //     choice = length_conversions[input_str.parse::<usize>().unwrap() -1][1];
-    // }
-    //
-    //
-    // else if category_choice == "4" {
-    //     println!("Number of Choices : {}", length_conversions.len());
-    //     for conversion in pressure_conversions.iter(){
-    //         println!("{} : {}  ",conversion[0], conversion[1]);
-    //     }
-    //     println!("Select an option:");
-    //     io::stdin().read_line(&mut input_str).expect("Error!");
-    //     input_str.pop();
-    //     choice = pressure_conversions[input_str.parse::<usize>().unwrap() -1][1];
-    // }
-
-
-
-
-    // types = choice.split_whitespace().collect();
-    // input_type = types[0];
-    // output_type = types[2];
-
-
-
 }
