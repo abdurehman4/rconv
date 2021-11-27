@@ -97,6 +97,7 @@ fn main() {
     fn choose_category(conversions: &[[&str; 2]]){
         let mut local_input_string  = String::new();
         let mut local_choice = String::new();
+        let mut input_choice: usize;
         println!("Number of Choice: {}",conversions.len());
         for conversion in conversions.iter(){
             println!("{} : {}", conversion[0],conversion[1])
@@ -104,6 +105,13 @@ fn main() {
         println!("Select an option:");
         io::stdin().read_line(&mut local_input_string).expect("Error!!");
         local_input_string.pop();
+        input_choice = local_input_string.parse::<usize>().unwrap() - 1;
+
+        if (input_choice+1)>conversions.len(){
+            println!("Wrong Choice!!");
+            process::exit(1);
+        }else {}
+
         local_choice = (&conversions[local_input_string.parse::<usize>().unwrap() - 1][1]).to_string();
         let local_types: Vec<&str>;
         let input_type :&str;
