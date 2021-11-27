@@ -14,14 +14,14 @@ fn main() {
       ["6","Square Mile to Square Foot"],
       ["7","Square Mile to Square Yard"],
       ["8","Square Mile to Square Inch"],
-      ["10","Square Foot to Square Meter"],
-      ["11","Square Foot to Square Mile"],
-      ["12","Square Foot to Square Yard"],
-      ["13","Square Foot to Square Inch"],
-      ["14","Square Inch to Square Meter"],
-      ["15","Square Inch to Square Mile"],
-      ["16","Square Inch to Square Foot"],
-      ["17","Square Inch to Square Yard"]
+      ["9","Square Foot to Square Meter"],
+      ["10","Square Foot to Square Mile"],
+      ["11","Square Foot to Square Yard"],
+      ["12","Square Foot to Square Inch"],
+      ["13","Square Inch to Square Meter"],
+      ["14","Square Inch to Square Mile"],
+      ["15","Square Inch to Square Foot"],
+      ["16","Square Inch to Square Yard"]
     ];
 
 
@@ -105,7 +105,6 @@ fn main() {
         io::stdin().read_line(&mut local_input_string).expect("Error!!");
         local_input_string.pop();
         local_choice = (&conversions[local_input_string.parse::<usize>().unwrap() - 1][1]).to_string();
-
         let local_types: Vec<&str>;
         let input_type :&str;
         let output_type :&str;
