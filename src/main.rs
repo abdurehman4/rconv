@@ -1,9 +1,11 @@
 #![allow(unused)]
 use std::io;
 use std::process;
+use std::env;
 
 fn main() {
     let mut category_choice = String::new();
+    category_choice = "0".to_string();
 
     let area_conversions: [[&str; 2]; 16] = [
       ["1","Square Meter to Square Mile"],
@@ -23,8 +25,6 @@ fn main() {
       ["15","Square Inch to Square Foot"],
       ["16","Square Inch to Square Yard"]
     ];
-
-
 
     let length_conversions:[[&str;2];8] = [
         ["1","Km to Mile"],
@@ -46,7 +46,6 @@ fn main() {
         ["6","Kelvin to Fahrenheit"]
     ];
 
-
     let pressure_conversions:[[&str;2];12] = [
         ["1","Atm to Torr"],
         ["2","Atm to Pascal"],
@@ -61,7 +60,6 @@ fn main() {
         ["11","mmHg to Torr"],
         ["12","mmHg to Pascal"]
     ];
-
 
     let conversion_categories:[(&str, &str, &[[&str;2]]);4] = [
         (
@@ -85,11 +83,31 @@ fn main() {
             &pressure_conversions
             )
     ];
-
-
-
-
     // Functions
+    fn phelp(version: &str){
+        println!("UConv {}, GNU LICENSE v3", version);
+        println!("A CLI Unit Converter written in Rust.");
+        println!();
+        println!("Usage:  uconv [options]");
+        println!();
+        println!("Options:");
+        println!("\t-h, --help\t\tPrints Help");
+        println!("\t-c, --category [num]\tChoose the conversion category.");
+    }
+    let mut args: Vec<String> = env::args().collect();
+    let version : &str = "1.0.1";
+    for arg in 0..args.len(){
+        if args[arg] =="-h" || args[arg] == "--help"{
+            phelp(version);
+            process::exit(0);
+        }else if args[arg] == "-c" || args[arg] == "--category"{
+            let mut choice:&mut String;
+            choice = &mut args[arg+1];
+            category_choice = (choice.parse::<usize>().unwrap()).to_string();
+        }else if args[arg] =="-ch" || args[arg] == "-hc"{
+            phelp(version);
+            process::exit(0);
+        }}
     fn choose_category(conversions: &[[&str; 2]]){
         let mut local_input_string  = String::new();
         let mut local_choice = String::new();
@@ -98,6 +116,7 @@ fn main() {
         for conversion in conversions.iter(){
             println!("{} : {}", conversion[0],conversion[1])
         }
+
         println!("Select an option:");
         io::stdin().read_line(&mut local_input_string).expect("Error!!");
         local_input_string.pop();
@@ -106,36 +125,26 @@ fn main() {
         if (input_choice+1)>conversions.len(){
             println!("Wrong Choice!!");
             process::exit(1);
-        }else {}
+        }else {
+        }
 
         local_choice = (&conversions[local_input_string.parse::<usize>().unwrap() - 1][1]).to_string();
         let local_types: Vec<&str>;
         let input_type :&str;
         let output_type :&str;
 
-
         local_types = local_choice.split(" to ").collect();
         input_type = local_types[0];
         output_type = local_types[1];
-
-
 
         // Calculation Variables
         let mut input_value = String::new();
         let input_int: f64;
         let mut output_value: f64 =0.0;
 
-
-
-
-
-
         println!("Enter the value ({}):",input_type);
         io::stdin().read_line(&mut input_value).expect("Error!!");
-        // println!("The length is {}",input_value.len());
         input_value.pop();
-        // println!("The length is {}",input_value.len());
-        // println!("Output Type : {}",output_type);
         input_int = input_value.parse::<f64>().unwrap();
 
         if input_type=="Celsius"{
@@ -223,9 +232,6 @@ fn main() {
                 output_value = input_int * 1550.0;
             }
         }
-
-
-
         else if input_type == "Square Mile"{
             if output_type == "Square Meter"{
                 output_value = input_int * 2.59e+6;
@@ -279,9 +285,6 @@ fn main() {
                 output_value = input_int  / 144.0;
             }
         }
-
-
-
         else {
             output_value = 0.0;
         }
@@ -295,17 +298,21 @@ fn main() {
     println!("Welcome to UConv!");
 
 
+    if category_choice == "0" {
+        for category in conversion_categories.iter() {
+            println!("{}: {}", category.0, category.1);
+        }
 
-    for category in conversion_categories.iter(){
-        println!("{}: {}", category.0, category.1);
-    }
 
+        println!("Select the category:");
+        io::stdin().read_line(&mut category_choice).expect("Error!");
+        category_choice.remove(0);
+        category_choice.pop();
+        // println!("{}",category_choice);
 
-    println!("Select the category:");
-    io::stdin().read_line(&mut category_choice).expect("Error!");
-    category_choice.pop();
-
-    if category_choice.parse::<usize>().unwrap()-1 < conversion_categories.len(){
+    }else {}
+    // println!("Choice Length : {}",category_choice.len());
+    if category_choice.parse::<usize>().unwrap()-1 < conversion_categories.len() {
     for category in conversion_categories.iter(){
         if category_choice == category.0 {
             choose_category(&category.2);
@@ -313,5 +320,4 @@ fn main() {
     }
     }else {
         println!("Wrong Choice!!");
-    }
-}
+    }}
