@@ -26,7 +26,7 @@ Download the source code, extract it and run the following to build the program:
 
 *Note: If you are rebuilding it, then run :* ``make clean-build``
 
-To install the build program run:
+To install the built program run:
 
 ``sudo make install``
 
