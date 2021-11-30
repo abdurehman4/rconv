@@ -3,6 +3,7 @@ build:
 	@mkdir -p ./build/bin/
 	@cargo build --release
 	@cp ./target/release/uconv ./build/bin/
+	@strip ./build/bin/uconv
 	@echo 'Building Done!!'
 	@echo 'Binaries are placed in ./build/bin/'
 

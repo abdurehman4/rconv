@@ -91,7 +91,7 @@ fn main() {
         println!("Usage:  uconv [options]");
         println!();
         println!("Options:");
-        println!("\t-h, --help\t\tPrints Help");
+        println!("\t-h, --help           Prints Help");
         println!("\t-c, --category [num]\tChoose the conversion category.");
     }
     let mut args: Vec<String> = env::args().collect();
@@ -100,10 +100,30 @@ fn main() {
         if args[arg] =="-h" || args[arg] == "--help"{
             phelp(version);
             process::exit(0);
-        }else if args[arg] == "-c" || args[arg] == "--category"{
+        }else if args[arg] == "-c1"{
+            category_choice = ("1".parse::<usize>().unwrap()).to_string();
+        }else if args[arg] == "-c2"{
+            category_choice = ("2".parse::<usize>().unwrap()).to_string();
+        }else if args[arg] == "-c3"{
+            category_choice = ("3".parse::<usize>().unwrap()).to_string();
+        }else if args[arg] == "-c4"{
+            category_choice = ("4".parse::<usize>().unwrap()).to_string();
+        }
+        else if args[arg] == "-c" || args[arg] == "--category"{
+            // println!("Current Place {} Arguments Len: {}",arg,args.len());
+            if arg < args.len()-1{
+            if args[arg+1] == "-h" || args[arg+1] =="--help"{
+                phelp(version);
+                process::exit(0);
+            }else{
             let mut choice:&mut String;
             choice = &mut args[arg+1];
             category_choice = (choice.parse::<usize>().unwrap()).to_string();
+            }}
+            else {
+                println!("No value provided!!");
+                process::exit(1);
+            }
         }else if args[arg] =="-ch" || args[arg] == "-hc"{
             phelp(version);
             process::exit(0);
