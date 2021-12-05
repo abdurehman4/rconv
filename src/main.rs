@@ -93,7 +93,7 @@ fn main() {
         println!("Options:");
         println!("\t-h, --help           Prints the help.");
         println!("\t-l, --list           Prints the available conversion categories.");
-        println!("\t-c, --category [num]\tChoose the conversion category.");
+        println!("\t-c, --category [num] Choose the conversion category.");
     }
     let mut args: Vec<String> = env::args().collect();
     let version : &str = "1.0.3";
