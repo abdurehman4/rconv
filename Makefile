@@ -1,5 +1,5 @@
 build:
-	@echo 'Building UConv!!'
+	@echo 'Building RConv!!'
 	@mkdir -p ./build/bin/
 	@cargo build --release
 	@cp ./target/release/rconv ./build/bin/
@@ -18,7 +18,7 @@ clean:
 	@rm -R ./build
 
 install:
-	@echo 'Installing UConv!!!!'
+	@echo 'Installing RConv!!!!'
 	@echo 'Copying Files!!!'
 	@cp -v ./build/bin/rconv /usr/bin/
 	@mkdir -p /usr/share/rconv/
@@ -27,9 +27,9 @@ install:
 	@echo 'Done!!!'
 
 uninstall:
-	@echo 'Removing UConv!!!!'
+	@echo 'Removing RConv!!!!'
 	@echo 'Deleting File!!!'
 	@rm -Rfv /usr/bin/rconv /usr/share/rconv
-	@echo 'Removed UConv!!'
+	@echo 'Removed RConv!!'
 
 clean-build: clean build
