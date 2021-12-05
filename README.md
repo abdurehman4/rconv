@@ -1,6 +1,8 @@
 # RConv
 A CLI Unit Converter written in Rust.
 
+> I have renamed the repository from uconv to rconv. Because of some conflicts.
+
 # Introduction
 This is a very simple app for unit conversions, like area, length, temperature etc.
 
