@@ -95,7 +95,7 @@ fn main() {
         println!("\t-c, --category [num]\tChoose the conversion category.");
     }
     let mut args: Vec<String> = env::args().collect();
-    let version : &str = "1.0.1";
+    let version : &str = "1.0.3";
     for arg in 0..args.len(){
         if args[arg] =="-h" || args[arg] == "--help"{
             phelp(version);
