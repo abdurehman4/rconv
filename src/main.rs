@@ -108,6 +108,10 @@ fn main() {
             category_choice = ("3".parse::<usize>().unwrap()).to_string();
         }else if args[arg] == "-c4"{
             category_choice = ("4".parse::<usize>().unwrap()).to_string();
+        }else if args[arg] == "-l" || args[arg] == "--list"{
+            for category in conversion_categories.iter() {
+                println!("{}: {}", category.0, category.1);
+            }
         }
         else if args[arg] == "-c" || args[arg] == "--category"{
             // println!("Current Place {} Arguments Len: {}",arg,args.len());
