@@ -1,4 +1,4 @@
-# UConv
+# RConv
 A CLI Unit Converter written in Rust.
 
 # Introduction
