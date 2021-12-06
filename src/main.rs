@@ -87,7 +87,7 @@ fn main() {
     // Functions
     // Arguments
     fn phelp(version: &str){
-        println!("UConv {}, GNU LICENSE v3", version);
+        println!("RConv {}, GNU LICENSE v3", version);
         println!("A Command Line Unit Converter written in Rust.");
         println!();
         println!("Usage:  rconv [options]");
@@ -324,7 +324,7 @@ fn main() {
     }
 
     print!("\x1b[92m\x1b[1m");
-    println!("Welcome to UConv!");
+    println!("Welcome to RConv!");
 
 
     if category_choice == "0" {
