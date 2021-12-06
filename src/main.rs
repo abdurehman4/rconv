@@ -1,7 +1,7 @@
 #![allow(unused)]
 use std::io;
-use std::process;
-use std::env;
+use std::process::exit;
+use std::env::args;
 
 fn main() {
     let version : &str = "1.0.3";
@@ -85,6 +85,7 @@ fn main() {
             )
     ];
     // Functions
+    // Arguments
     fn phelp(version: &str){
         println!("UConv {}, GNU LICENSE v3", version);
         println!("A Command Line Unit Converter written in Rust.");
@@ -96,12 +97,12 @@ fn main() {
         println!("\t-l, --list           Prints the available conversion categories.");
         println!("\t-c, --category [num] Choose the conversion category.");
     }
-    let mut args: Vec<String> = env::args().collect();
+    let mut args: Vec<String> = args().collect();
     
     for arg in 0..args.len(){
         if args[arg] =="-h" || args[arg] == "--help"{
             phelp(version);
-            process::exit(0);
+            exit(0);
         }else if args[arg] == "-c1"{
             category_choice = ("1".parse::<usize>().unwrap()).to_string();
         }else if args[arg] == "-c2"{
@@ -115,14 +116,14 @@ fn main() {
             for category in conversion_categories.iter() {
                 println!("{}: {}", category.0, category.1);
             }
-            process::exit(0);
+            exit(0);
         }
         else if args[arg] == "-c" || args[arg] == "--category"{
             // println!("Current Place {} Arguments Len: {}",arg,args.len());
             if arg < args.len()-1{
             if args[arg+1] == "-h" || args[arg+1] =="--help"{
                 phelp(version);
-                process::exit(0);
+                exit(0);
             }else{
             let mut choice:&mut String;
             choice = &mut args[arg+1];
@@ -130,11 +131,11 @@ fn main() {
             }}
             else {
                 println!("No value provided!!");
-                process::exit(1);
+                exit(1);
             }
         }else if args[arg] =="-ch" || args[arg] == "-hc"{
             phelp(version);
-            process::exit(0);
+            exit(0);
         }}
     fn choose_category(conversions: &[[&str; 2]]){
         let mut local_input_string  = String::new();
@@ -152,7 +153,7 @@ fn main() {
 
         if (input_choice+1)>conversions.len(){
             println!("Wrong Choice!!");
-            process::exit(1);
+            exit(1);
         }else {
         }
 
