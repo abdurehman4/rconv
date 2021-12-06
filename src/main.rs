@@ -4,6 +4,7 @@ use std::process;
 use std::env;
 
 fn main() {
+    let version : &str = "1.0.3";
     let mut category_choice = String::new();
     category_choice = "0".to_string();
 
@@ -86,9 +87,9 @@ fn main() {
     // Functions
     fn phelp(version: &str){
         println!("UConv {}, GNU LICENSE v3", version);
-        println!("A CLI Unit Converter written in Rust.");
+        println!("A Command Line Unit Converter written in Rust.");
         println!();
-        println!("Usage:  uconv [options]");
+        println!("Usage:  rconv [options]");
         println!();
         println!("Options:");
         println!("\t-h, --help           Prints the help.");
@@ -96,7 +97,7 @@ fn main() {
         println!("\t-c, --category [num] Choose the conversion category.");
     }
     let mut args: Vec<String> = env::args().collect();
-    let version : &str = "1.0.3";
+    
     for arg in 0..args.len(){
         if args[arg] =="-h" || args[arg] == "--help"{
             phelp(version);
