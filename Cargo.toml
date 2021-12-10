@@ -1,6 +1,7 @@
 [package]
 name = "rconv"
-version = "1.0.3"
+version = "1.0.4"
 edition = "2021"
 
 [dependencies]
+eval = "^0.4"
