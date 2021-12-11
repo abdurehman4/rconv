@@ -7,7 +7,7 @@ use std::io;
 use std::process::exit;
 
 fn main() {
-    let version: &str = "1.0.3";
+    let version: &str = "1.0.4";
     // My Structs
     struct Conversion {
         index: String,
