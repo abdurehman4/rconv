@@ -289,17 +289,6 @@ fn main() {
         ("3", "Pressure Conversions", &pressure_conversions),
         ("4", "Temperature Conversions", &temp_conversions),
     ];
-    // // From JSON
-    // let json_data = fs::read_to_string("area_conversions.json")
-    // //     .unwrap()
-    // //     .to_string();
-    // let json_data_str: &str = &json_data
-    // println!("{}", json_data);
-    // let area_conversions_json: [Conversion; 16] = serde_json::from_str(json_data[..]).unwrap();
-    // println!("{:?}", area_conversions_json);
-    // println!("{:?}", area_conversions_json);
-    // exit(0);
-
     // Functions
     // Arguments
     fn phelp(version: &str) {
