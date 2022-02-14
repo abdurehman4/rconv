@@ -26,7 +26,7 @@ Download the source code, extract it and run the following to build the program:
 
 ``make``
 
-*Note: If you are rebuilding it, then run :* ``make clean-build``
+> Note: If you are rebuilding it, then run : ``make clean-build``
 
 To install the built program run:
 
